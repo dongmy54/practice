@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: articles
+#
+#  id         :bigint(8)        not null, primary key
+#  title      :string
+#  text       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  author     :string
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  text: MyText
+
+two:
+  title: MyString
+  text: MyText

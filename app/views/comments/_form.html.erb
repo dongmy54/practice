@@ -1,0 +1,12 @@
+<%= form_for [@article, @article.comments.build] do |f| %>
+  <p>
+    <%= f.label :commenter %>
+    <%= f.text_field :commenter %>
+  </p>
+
+  <p>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </p>
+  <p><%= f.submit '提交评论' %></p> 
+<% end %>

@@ -1,0 +1,17 @@
+<h3>show article</h3>
+<p>
+   <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+<p>
+  <strong>Text:</strong>
+  <%= @article.text %>
+</p>
+
+<%= link_to '返回列表', articles_path %>
+
+<h3>评论展示</h3>
+<%= render @article.comments %>
+
+<h3>留下评论</h3>
+<%= render 'comments/form' %>

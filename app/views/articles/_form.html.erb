@@ -1,0 +1,25 @@
+<% if @article.errors.any? %>
+  <h3>
+    <%= pluralize(@article.errors.count, '错误') %>
+  </h3>
+
+  <ul>
+    <% @article.errors.full_messages do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @article do |f| %>
+  <p>
+    <%= f.label :tite %>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :text %>
+    <%= f.text_area :text %>
+  </p>
+
+  <%= f.submit '提交' %>
+<% end %>

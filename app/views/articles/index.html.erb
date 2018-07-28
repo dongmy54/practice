@@ -1,0 +1,19 @@
+<h3>所有文章</h3>
+<table>
+  <tr>
+    <th>标题</th>
+    <th>内容</th>
+    <th>详细</th>
+  </tr>
+
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= link_to '查看详情', article_path(article) %></td>
+      <td><%= link_to '编辑', edit_article_path(article) %></td>
+      <td><%= link_to '删除', article_path(article), method: :delete, data: {confirm: '你确定删除吗？'} %></td>
+  <% end %>
+</table>
+
+<%= link_to '创建一篇', new_article_path %>
