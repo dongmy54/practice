@@ -11,6 +11,11 @@
 #
 
 class Person < ApplicationRecord
+  # 当@person.articles << article时 自动创建readings数据
+  has_many :readings
+  has_many :articles, -> { distinct },through: :readings # 这种也放中间
+
+
   # 将字段 一个个拿进去验证
   # 这种方式的验证 生成的错误信息 和 一般的验证一样
   validates_each :name,:surname do |record,attr,value|

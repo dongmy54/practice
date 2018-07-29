@@ -14,6 +14,7 @@
 #  alisa_name        :string
 #  role              :string
 #  length_of_service :integer
+#  guid              :string
 #
 
 require 'test_helper'

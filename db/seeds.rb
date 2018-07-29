@@ -7,11 +7,26 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # 种子数据
-100.times do |i|
-  Category.create(:name => Faker::Artist.name)
-  Account.create(:name => Faker::Name.unique.name, :age => rand(60), :address => Faker::Address.full_address)
-end
+# 100.times do |i|
+#   Category.create(:name => Faker::Artist.name)
+#   Account.create(:name => Faker::Name.unique.name, :age => rand(60), :address => Faker::Address.full_address)
+# end
 
-10.times do |i|
-  Balance.create(:income => rand(1000), :expense => rand(1000),:account_id => rand(10))
+# 10.times do |i|
+#   Balance.create(:income => rand(1000), :expense => rand(1000),:account_id => rand(10))
+# end
+
+User.all.each do |u|
+  u.name  = Faker::Name.first_name.slice(0,5)
+  email   = Faker::Internet.email
+  u.email = email
+  u.email_confirmation = email
+  u.alisa_name         = ('a'..'z').to_a.sample(4).join
+  u.terms_of_service   = true
+  u.role               = 'admin'
+  u.age                = rand(30)
+  u.home_page_urls     = '/'
+  u.guid               = SecureRandom.uuid.delete('-')
+  u.save!
+  puts '成功修复一条'
 end

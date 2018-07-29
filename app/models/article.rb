@@ -11,7 +11,15 @@
 #
 
 class Article < ApplicationRecord
-  has_many :comments, :dependent => :destroy
+  # 关联作用域只能紧挨着 关联
+  # 可接 字符串/hash
+  has_many :comments, -> {where "id > 4"}, :dependent => :destroy do
+    # Article.first.comments.extend_a_method 调用 
+    def extend_a_method
+      puts '这是一个关联扩展方法'
+    end
+
+  end
 
   validates :title, presence: true, length: {minimum: 6}
   # scope同时验证 title和 text 两个字段的唯一性

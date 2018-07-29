@@ -1,18 +1,23 @@
 # == Schema Information
 #
-# Table name: teachers
+# Table name: vehicles
 #
 #  id         :bigint(8)        not null, primary key
-#  name       :string
+#  type       :string
+#  color      :string
+#  price      :decimal(10, 2)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  school_id  :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  type: 
+  color: MyString
+  price: 9.99
 
 two:
-  name: MyString
+  type: 
+  color: MyString
+  price: 9.99

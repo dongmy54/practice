@@ -12,7 +12,7 @@
 #
 
 class Product < ApplicationRecord
-  has_many :pictures, as: :imageable    # 多状 加别名
+  has_many :pictures, as: :imageable    # 多态 加别名
   belongs_to :user, touch: true
 
   validates_associated :user # 验证 product 时 会验证 user；它是有方向性的

@@ -13,7 +13,8 @@
 #
 
 class Comment < ApplicationRecord
-  belongs_to :article
+  belongs_to :article, :counter_cache => true # 计数缓存开启 让articles存comment数量
+                                              # 并且数量由rails 自己维护
   # absence 与 presence 对应哦
   validates :null_field,absence: true # 这个字段只能为nil / ''
 

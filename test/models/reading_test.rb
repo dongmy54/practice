@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: teachers
+# Table name: readings
 #
 #  id         :bigint(8)        not null, primary key
-#  name       :string
+#  article_id :integer
+#  person_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  school_id  :integer
 #
 
 require 'test_helper'
 
-class TeacherTest < ActiveSupport::TestCase
+class ReadingTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

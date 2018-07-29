@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180728094138) do
+ActiveRecord::Schema.define(version: 20180729133726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180728094138) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "author"
+    t.integer "comments_count", default: 0, null: false
   end
 
   create_table "assemblies", force: :cascade do |t|
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180728094138) do
   create_table "assemblies_parts", id: false, force: :cascade do |t|
     t.integer "part_id"
     t.integer "assembly_id"
+    t.string "test_column", default: "hello"
     t.index ["assembly_id"], name: "index_assemblies_parts_on_assembly_id"
     t.index ["part_id"], name: "index_assemblies_parts_on_part_id"
   end
@@ -66,6 +68,7 @@ ActiveRecord::Schema.define(version: 20180728094138) do
     t.integer "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -206,6 +209,20 @@ ActiveRecord::Schema.define(version: 20180728094138) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
+  create_table "readings", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id", "person_id"], name: "index_readings_on_article_id_and_person_id"
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sections", force: :cascade do |t|
     t.string "name"
     t.integer "document_id"
@@ -261,6 +278,15 @@ ActiveRecord::Schema.define(version: 20180728094138) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "school_id"
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.string "user_id"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_todos_on_user_id"
   end
 
   create_table "tproducts", force: :cascade do |t|
@@ -284,6 +310,15 @@ ActiveRecord::Schema.define(version: 20180728094138) do
     t.string "alisa_name"
     t.string "role"
     t.integer "length_of_service"
+    t.string "guid"
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string "type"
+    t.string "color"
+    t.decimal "price", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "accounts", "categories"

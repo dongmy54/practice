@@ -1,18 +1,13 @@
 # == Schema Information
 #
-# Table name: teachers
+# Table name: schools
 #
 #  id         :bigint(8)        not null, primary key
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  school_id  :integer
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: MyString
-
-two:
-  name: MyString
+class School < ApplicationRecord
+  has_many :teachers
+end

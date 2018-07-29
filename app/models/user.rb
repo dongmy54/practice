@@ -14,6 +14,7 @@
 #  alisa_name        :string
 #  role              :string
 #  length_of_service :integer
+#  guid              :string
 #
 
 class User < ApplicationRecord
@@ -27,7 +28,7 @@ class User < ApplicationRecord
 
   validates :email,confirmation: {:message => '邮箱和确认邮箱需要匹配'}
   validates :email_confirmation,:presence => {message: '确认邮箱不能为空'}
-  validates :email,format: {with: /\A[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+\z/,
+  validates :email,format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i,
                             message: '必须输入邮箱格式'}
   
   # 触发单个属性 验证器
@@ -45,6 +46,9 @@ class User < ApplicationRecord
                                               :message => '工作年龄必须大于等于%{count}'},
                                               if: [:is_admin?,:age_than_30?],
                                               unless: Proc.new {|user| user.name.blank?}
+  # 外键 在 不是id的情况指定
+  has_many :todos,:primary_key => 'guid',validate: false # 妈的关掉 也执行验证
+
   after_touch do 
     puts 'touch 了 user'
   end
@@ -55,6 +59,10 @@ class User < ApplicationRecord
 
   def age_than_30?
     age > 30
+  end
+
+  User.all.each do |u|
+
   end
 
 end
