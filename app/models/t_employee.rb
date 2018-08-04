@@ -14,5 +14,5 @@ class TEmployee < ApplicationRecord
   # 表中加一个关联字段就行
   # 另外 has_many belongs_to 这里的名字 也是自己定的
   has_many   :subordinates, :class_name => 'TEmployee',:foreign_key => "manage_id"
-  belongs_to :manager,      :class_name => 'TEmployee', required: false # require 允许 manage_id 为空
+  belongs_to :manager,      :class_name => 'TEmployee',:foreign_key => "manage_id", required: false # require 允许 manage_id 为空
 end

@@ -13,7 +13,7 @@ class Author < ApplicationRecord
   # 关联中 readonly 只是表示 不能通过本model去保存相关model
   # 关联作用域 可以多个方法串起
   # where 中为hash 时，默认通过author创建的book active 为 false
-  has_many :books,-> {where(active: false).readonly(true).order('published_at desc')},
+  has_many :books,#-> {where(active: false).readonly(true).order('published_at desc')},
             :inverse_of => :author,
             :dependent => :destroy,
             before_add: [:association_callback1,:association_callback2]

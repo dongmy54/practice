@@ -2,18 +2,22 @@
 #
 # Table name: articles
 #
-#  id         :bigint(8)        not null, primary key
-#  title      :string
-#  text       :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  author     :string
+#  id             :bigint(8)        not null, primary key
+#  title          :string
+#  text           :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  author         :string
+#  comments_count :integer          default(0), not null
+#  category_id    :integer
 #
 
 class Article < ApplicationRecord
+  belongs_to :category
+  has_many :tags
   # 关联作用域只能紧挨着 关联
   # 可接 字符串/hash
-  has_many :comments, -> {where "id > 4"}, :dependent => :destroy do
+  has_many :comments, -> {where "comments.id > 4"}, :dependent => :destroy do
     # Article.first.comments.extend_a_method 调用 
     def extend_a_method
       puts '这是一个关联扩展方法'

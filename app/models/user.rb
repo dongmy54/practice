@@ -18,6 +18,11 @@
 #
 
 class User < ApplicationRecord
+  # 默认作用域 在创建记录时 如果设定字段值 也会影响刚创建的
+  # unscoped 去掉 默认作用域
+  default_scope {order(:age => :desc)}    # 默认作用域 也可定义为类方法
+  scope :search_role, ->(role){where('role = ?',role) if role.present?}
+
   attr_accessor :email_confirmation
   has_many :products
 
@@ -61,8 +66,15 @@ class User < ApplicationRecord
     age > 30
   end
 
-  User.all.each do |u|
-
+  # 模型重载 和字段同名
+  def name
+    "I am #{super}"
   end
+
+  # def self.search_role(role)       
+  #   if role.present?           # 与作用域不同的是 类方法：当条件不满足时回传nil;而作用域不管什么情况都回传ActiveRecord::Relation
+  #     where('role = ?', role)
+  #   end
+  # end
 
 end

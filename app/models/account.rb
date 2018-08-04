@@ -14,6 +14,11 @@
 #
 
 class Account < ApplicationRecord
+  scope :age_old, -> {where('age > ?', 30)}                          # 等同于定义类方法
+  scope :age_greater_than, ->(age){ where('age > ?', age)}           # 也可传参数
+  scope :name_include_dm, -> {where('name ~ ?','.*dm.*')}
+  scope :big_id_and_age, -> {age_old.where('id > :id',:id => 10)}    # 后面作用域 可以用前面的
+
   # 在验证中 message 内容 装在单引号中也是可以的
   # model 模型名
   validates :name,presence: {message: '%{model}哦'},on: :update # 这里状态 create update 用符号

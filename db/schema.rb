@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180729133726) do
+ActiveRecord::Schema.define(version: 20180804085108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180729133726) do
     t.datetime "updated_at", null: false
     t.string "author"
     t.integer "comments_count", default: 0, null: false
+    t.integer "category_id"
   end
 
   create_table "assemblies", force: :cascade do |t|
@@ -124,6 +125,13 @@ ActiveRecord::Schema.define(version: 20180729133726) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "guests", force: :cascade do |t|
+    t.string "name"
+    t.integer "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "license_histories", force: :cascade do |t|
     t.string "name"
     t.bigint "license_plate_id"
@@ -159,6 +167,8 @@ ActiveRecord::Schema.define(version: 20180729133726) do
     t.string "card_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "lock_order_version"
+    t.integer "status", default: 0
   end
 
   create_table "paragraphs", force: :cascade do |t|
@@ -258,6 +268,13 @@ ActiveRecord::Schema.define(version: 20180729133726) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["manage_id"], name: "index_t_employees_on_manage_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tauthors", force: :cascade do |t|
