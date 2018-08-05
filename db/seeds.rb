@@ -20,13 +20,16 @@ User.all.each do |u|
   u.name  = Faker::Name.first_name.slice(0,5)
   email   = Faker::Internet.email
   u.email = email
-  u.email_confirmation = email
-  u.alisa_name         = ('a'..'z').to_a.sample(4).join
-  u.terms_of_service   = true
-  u.role               = 'admin'
-  u.age                = rand(30)
-  u.home_page_urls     = '/'
-  u.guid               = SecureRandom.uuid.delete('-')
+  u.email_confirmation    = email
+  u.alisa_name            = ('a'..'z').to_a.sample(4).join
+  u.terms_of_service      = true
+  u.role                  = 'admin'
+  u.age                   = rand(30)
+  u.home_page_urls        = '/'
+  u.guid                  = SecureRandom.uuid.delete('-')
+  u.password              = '123456'
+  u.password_confirmation = '123456'
   u.save!
   puts '成功修复一条'
 end
+

@@ -13,6 +13,11 @@
 require 'test_helper'
 
 class PersonTest < ActiveSupport::TestCase
+  # include ActiveModel::Lint::Tests    # 此模块 作用
+
+  setup do
+    @model = Person.new
+  end
   # test "the truth" do
   #   assert true
   # end

@@ -15,6 +15,7 @@
 #  role              :string
 #  length_of_service :integer
 #  guid              :string
+#  password_digest   :string
 #
 
 require 'test_helper'

@@ -34,6 +34,7 @@ gem 'haml', '5.0.4'
 gem 'awesome_print', '1.8.0'
 gem 'annotate', '2.7.4' # 为model 添加字段注释
 gem 'faker', '1.8.7'
+gem 'bcrypt', '3.1.12'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

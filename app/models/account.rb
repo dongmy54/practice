@@ -46,10 +46,10 @@ class Account < ApplicationRecord
     #throw :abort   # 这会终止回调
   end
 
-  Account.find(111).update_columns(:age => 18) # 加载这个model 就会执行
+  #Account.find(111).update_columns(:age => 18) # 加载这个model 就会执行
 
   after_destroy do
-    Account.find(111).update_columns(:age => 18)
+    #Account.find(111).update_columns(:age => 18)
     puts '同时更新了age'
   end
 

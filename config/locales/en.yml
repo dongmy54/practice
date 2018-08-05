@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+
+pt-BR:
+  activemodel:
+    attributes:
+      person6:
+        name: 'dmy'

@@ -1,0 +1,11 @@
+# 文件名 不存在对应关系
+# 开头 
+# 要么中文 en
+# 要么英文 es 
+
+
+en:
+  activemodel:
+    attributes:
+      person6:
+        name: '名字'
