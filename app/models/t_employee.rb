@@ -9,10 +9,12 @@
 #  updated_at :datetime         not null
 #
 
+# 自联结
 class TEmployee < ApplicationRecord
   # 本质：利用class_name foregin_key
   # 表中加一个关联字段就行
   # 另外 has_many belongs_to 这里的名字 也是自己定的
   has_many   :subordinates, :class_name => 'TEmployee',:foreign_key => "manage_id"
-  belongs_to :manager,      :class_name => 'TEmployee',:foreign_key => "manage_id", required: false # require 允许 manage_id 为空
+  belongs_to :manage,       :class_name => 'TEmployee'
+  # 只要外键能通过 has_many/belongs_to 后接的方法推导 出来就不用 写 foreign_key
 end

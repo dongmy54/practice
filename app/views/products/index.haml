@@ -1,0 +1,8 @@
+%h3.text-center 产品展示列表
+.row
+  .col-md-4
+  .col-md-3.col-md-offset-3
+    -@products.each do |p|
+      %ul.list-group
+        %li.list-group-item
+          =link_to p.name, single_product_path(p), :class => 'btn btn-info'

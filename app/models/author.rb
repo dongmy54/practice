@@ -15,7 +15,7 @@ class Author < ApplicationRecord
   # where 中为hash 时，默认通过author创建的book active 为 false
   has_many :books,#-> {where(active: false).readonly(true).order('published_at desc')},
             :inverse_of => :author,
-            :dependent => :destroy,
+            :dependent => :nullify,
             before_add: [:association_callback1,:association_callback2]
 
  # 在执行@author.books.clear时 也会参考dependent 关联
