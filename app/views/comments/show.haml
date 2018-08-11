@@ -1,0 +1,7 @@
+%h4.text-center 评论页面
+.row
+  .col-md-3
+  .col-md-6
+    %p="评论人： #{@comment.commenter}"
+    %p="内容： #{@comment.body}"
+    %p="日期: #{@comment.created_at.strftime("%F %T")}"

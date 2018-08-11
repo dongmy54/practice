@@ -1,0 +1,8 @@
+%h3.text-center 评论集合页
+.row
+  .col-md-3
+  .col-md-6
+    -@comments.each do |comment|
+      %p=comment.commenter
+      %p=comment.created_at.strftime("%F %T")
+      %tr

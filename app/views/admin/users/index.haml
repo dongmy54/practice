@@ -1,0 +1,21 @@
+%h3.text-center admin usera 中心
+.row
+  .col-md-3
+  .col-md-6
+    %table.table
+      %thead.thead-dark
+        %tr
+          %th 编号
+          %th 名字
+          %th 年龄
+          %th 地址
+          %th 创建日期
+      %tbody
+        -@users.each_with_index do |user,i|
+          %tr
+            %th=i
+            %th=user.name
+            %th=user.age
+            %th=user.address
+            %th=user.created_at.strftime("%F %T")
+

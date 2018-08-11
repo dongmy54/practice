@@ -1,0 +1,13 @@
+%h3 todo 创建页面
+.row
+  .col-md-3
+  .col-md-3
+    // 单数资源 必须加 url rails 不能自动识别
+    =form_for @todo,url: todo_path do |f|
+      .row.form-group
+        .col-md-3
+          =f.label '标题'
+        .col-md-9
+          =f.text_field :title, :class => 'form-control'
+      .form-group
+        =f.submit '提交', :class => 'btn form-control btn-primary'
