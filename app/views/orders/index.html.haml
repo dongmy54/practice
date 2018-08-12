@@ -1,0 +1,18 @@
+%h3.text-center= params[:status] == 0 ? '已下单列表' : '已发货订单列表'
+.row
+  .col-md-3
+  .col-md-6
+    %table.table
+      %thead.dark-thead
+        %tr
+          %th 编号
+          %th 支付类型
+          %th 卡号
+          %th 创建时间
+      %tbody
+        -@orders.each_with_index do |order,i|
+          %tr
+            %th=i
+            %th=order.payment_type
+            %th=order.card_number
+            %th=order.created_at.strftime("%F %T")

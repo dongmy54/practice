@@ -1,0 +1,20 @@
+%h3.text-center ajax 展示页
+.row
+  .col-md-6.offset-md-3
+    =link_to 'ajax 测试', ajax_delete_path, :class => 'btn btn-primary ajax-test'
+
+:javascript
+  $(".ajax-test").click(function(evt){
+    evt.preventDefault();
+    var url = $(this).attr("href");
+
+    $.ajax({
+      url: url,
+      datatype: 'json',
+      method: 'DELETE',
+      data: {'a': 'sd'},
+      success: function(data) {
+        console.log(data);
+      }
+    })
+  })

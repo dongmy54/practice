@@ -12,6 +12,8 @@
 #
 
 class Order < ApplicationRecord
+  scope :place_on_order, ->{where(status: 0)}
+  scope :shipment, ->{where(status: 1)}
   # 0 下单 1 发货
   enum status: [:place_on_order,:shipment]       # 宏
   # o.status 将数字 映射为这里的 名称
@@ -26,6 +28,12 @@ class Order < ApplicationRecord
                                       message: "支付类型只能是 支付宝/微信/银行卡/现金"}, 
                                       unless: lambda {|order| order.payment_type.blank? }
                                         # 也可接块 块中传 对象进去 适合判断较少的情况
+  PaymentType = {
+    'card' => '银行卡',
+    'cash' => '现金',
+    'weixin' => '微信',
+    'zhifubao' => '支付宝'
+  }
 
   def payment_type_is_card?
     payment_type == 'card'

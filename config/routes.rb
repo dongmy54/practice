@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'orders/index'
+
   get 'books/delete'
 
   get 'welcome/index'
@@ -6,9 +8,14 @@ Rails.application.routes.draw do
   get 'welcome/t_haml'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
- 
-  #resources :users
+  get 'arr_params_test' => 'books#arr_params_test'
+  post 'json_data'     => 'books#json_data'
+  get 'ajax_page'      => 'books#ajax_page'
+  delete 'ajax_delete' => 'books#ajax_delete'
+  get 'routes_set_params' => 'books#routes_set_params', foo: 'bar' # 设置一个 写死的 参数
 
+  #resources :users
+  resources :orders
   # 控制器 和 方法间用
   get 'products', to: 'products#index'
   get 'products/:id', to: 'products#show', as: 'single_product'
@@ -48,6 +55,10 @@ Rails.application.routes.draw do
   # 嵌套层级不超过1层
   resources :authors do
     resources :books
+  end
+
+  namespace :api do
+    post 'hu', to: 'users#hu' # 这样写是可以的 会加上 前api
   end
 
   #=========================== 浅层嵌套 ================================#

@@ -18,6 +18,7 @@ class Author < ApplicationRecord
             :dependent => :nullify,
             before_add: [:association_callback1,:association_callback2]
 
+ 
  # 在执行@author.books.clear时 也会参考dependent 关联
  # 在拥有许多 这里建立关联删除
  # destroy 执行回调
@@ -25,6 +26,28 @@ class Author < ApplicationRecord
  # nullify 把关联外键设为nil
  # restrict_with_exception 炮异常
  # restrict_with_error 返回false
+
+  accepts_nested_attributes_for :books, allow_destroy: true
+  # 这个方法主要用于 应用来一次性 从父对象 保存多个子对象的
+  # h = {:name => '测地', books_attributes: [
+  #        {published_at: Time.now},
+  #        {published_at: 3.day.ago}
+  #  ]}
+  # Author.create(h)
+
+  # h = {name: '名字改',
+  #      books_attributes: [
+  #        {id: 35,published_at: 2.day.ago},
+  #        {id: 36,published_at: 10.day.ago}
+  #      ]}
+  # a.attributes = h 可以更新 
+
+  # 删除
+  # h = {books_attributes: [
+  #     {id: 35, _destroy: true}
+  # ]}
+  # author.attributes = h
+  # author.save
 
   # 关联回调 还有 after_add/before_remove/after_remove
   #  方法必须要设定参数
@@ -36,6 +59,7 @@ class Author < ApplicationRecord
     puts '执行关联回调2'
   end
 
+  
 
   
 end

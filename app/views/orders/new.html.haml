@@ -1,0 +1,15 @@
+%h3.text-center order new page
+.row
+  .col-md-6.offset-md-3
+    =form_for @order do |f|
+      .form-group
+        =f.label '支付类型'
+        =f.select :payment_type, Order::PaymentType.invert, :class => 'form-control'
+      .form-group
+        =f.label '卡号'
+        =f.text_field :card_number, :class => 'form-control'
+      .form-group
+        =f.label '卡状态'
+        =f.number_field :status, :class => 'form-control'
+      .form-group
+        =f.submit '提交', :class => 'btn btn-primary'
