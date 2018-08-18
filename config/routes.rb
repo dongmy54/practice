@@ -39,10 +39,10 @@ Rails.application.routes.draw do
 
   # 无论加 命名空间 还是 模块 helper方法不受影响
   # 加controller 层级
-  # scope module: 'admin' do
-  #   resources :users
-  # end
-  # # 等价  resources :users, module: 'admin'
+  scope module: 'admin' do
+    resources :users
+  end
+  # 等价  resources :users, module: 'admin'
 
   # # 加路径前缀
   # scope '/admin' do # 字符串路径
@@ -53,21 +53,22 @@ Rails.application.routes.draw do
   # # 资源嵌套 反应model关联关系
   # # ps： 注意 资源的嵌套和 controller嵌套无关
   # # /authors/:author_id/books/:book_id/edit 本质上是url的叠加
-  # # 嵌套层级不超过1层
-  # resources :authors do
-  #   resources :books
-  # end
+  # 嵌套层级不超过1层
+  resources :authors do
+    resources :books
+  end
 
+  #get 'huds(/:id)', to: 'books#show'   # 这里即可以 接收 /huds  也可以 /huds/25
   # namespace :api do
   #   post 'hu', to: 'users#hu' # 这样写是可以的 会加上 前api
   # end
 
-  # #=========================== 浅层嵌套 ================================#
-  # # 浅层嵌套 （一组添加）
-  # resources :articles, shallow: true do
-  #   resources :comments
-  #   resources :tags
-  # end
+  #=========================== 浅层嵌套 ================================#
+  # 浅层嵌套 （一组添加）
+  resources :articles, shallow: true do
+    resources :comments
+    resources :tags
+  end
   # # 与上等价
   # # shallow do
   # #   resources :articles do

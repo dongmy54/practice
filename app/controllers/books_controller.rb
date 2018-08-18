@@ -1,14 +1,9 @@
 class BooksController < ApplicationController
 
-  # 默认url 参数
+ 
   def default_url_options
-    { locale: 'dd' }
-    puts '----------hh =--------'
-  end
-
-  # def default_url_options
-  #   {:country => 'china'} 
-  # end
+    { locale: 'kk' }          # 所生成的url 都包含的参数 指 XX_path/xx_url
+  end                         # 只能是 hash 不能填其它的
 
   def index
     puts "#{params[:id]}"
