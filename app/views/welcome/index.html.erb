@@ -6,3 +6,7 @@
 
 <%= link_to '文章列表', 'articles', :class => 'btn btn-primary' %>
 <%= link_to '新建文章', new_article_path %>
+<% @book = Book.first %>
+<% @author = @book.author %>
+<%= link_to 'book1详细', [@author,@book], class: 'btn btn-info' %>
+<%= link_to 'book编辑', [:edit,@author,@book], class: 'btn btn-primary' %>

@@ -11,9 +11,9 @@ class BooksController < ApplicationController
   # end
 
   def index
-    puts "params[:id]"
-    render :inline => '<h2> hello </h2>'
-    # 返回在线 html
+    puts "#{params[:id]}"
+    @book = Book.first
+    @author = @book.author
   end
 
   def show
@@ -21,6 +21,10 @@ class BooksController < ApplicationController
     puts "-==============default_params: #{params['locale']}"
 
     render html: '<h4>show</show>'
+  end
+
+  def edit
+    render html: '<h4>编辑页面</h4>'
   end
 
   def routes_set_params
