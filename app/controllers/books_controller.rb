@@ -6,9 +6,13 @@ class BooksController < ApplicationController
   end                         # 只能是 hash 不能填其它的
 
   def index
-    puts "#{params[:id]}"
+    #reset_session                 # 重置session
+    # session.delete(:user_id)     # 删除session 一般赋值为 nil
+    puts session[:user_id]
+    flash[:primary] = '测试 测试！'    
     @book = Book.first
     @author = @book.author
+    render :index
   end
 
   def show
@@ -25,7 +29,6 @@ class BooksController < ApplicationController
   def routes_set_params
     #get 'routes_set_params' => 'books#routes_set_params', foo: 'bar'
     puts "---------------foo: #{params[:foo]}"
-    puts "-==============default_params: #{params[:locale]}"
     render html: '可以吧'
   end
 
@@ -46,6 +49,14 @@ class BooksController < ApplicationController
 
   def ajax_delete
     render :json => {:result => '已成功送达'}
+  end
+
+  def flash_test
+    flash[:warning] = '这是警告消息'
+    @author = Author.first        
+    redirect_to author_books_path(@author)    # @author 必须分开写 不然不能展示
+    # 重定向直接 消息 只能是 notice alert flash 这几个
+    # redirect_to author_books_path(@author), flash: { referral_code: 1234 }
   end
 
 end

@@ -6,9 +6,12 @@ class AccountsController < ApplicationController
   end
 
   def bark
+    @book = Book.first
+    # 响应不同的格式  http://localhost:3000/bark.xml  
     respond_to do |format|
-      format.html {render html: 'bark 响应'}
-      format.json {render json: {:success => true}}
+      format.xml  {render xml: Book.all}   # 单个对象 没有to_xml 方法
+      format.html {render html: @book}
+      format.json {render json: @book}
     end
   end
 

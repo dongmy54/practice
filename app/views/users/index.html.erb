@@ -1,0 +1,10 @@
+<form action='/create_author' method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">作者姓名</label>
+    <!-- form_authenticity_token 会获取 authenticity_token 值-->
+    <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %>>
+    <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="nameHelp" class="form-text text-muted">不泄露你的名字</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

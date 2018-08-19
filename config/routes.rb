@@ -13,14 +13,17 @@ Rails.application.routes.draw do
   get 'ajax_page'      => 'books#ajax_page'
   delete 'ajax_delete' => 'books#ajax_delete'
   get 'routes_set_params' => 'books#routes_set_params', foo: 'bar' # 设置一个 写死的 参数
-
+  get 'flash_test', to: 'books#flash_test'
   #resources :users
   resources :orders
   # 控制器 和 方法间用
   get 'products', to: 'products#index'
   get 'products/:id', to: 'products#show', as: 'single_product'
+  get 'set_cookie', to: 'cookies#set_cookie'
+  get 'read_cookie', to: 'cookies#read_cookie'
+  post 'create_author', to: 'users#create_author'
 
-  resources :cars, :photos, :authors # 写成一行
+  resources :cars, :photos, :authors, :users # 写成一行
   # 默认情况下 这里会导入users/porfile 路径下 加to 也没用
   get :profile,to: :p,:controller => 'users' 
 
@@ -39,9 +42,9 @@ Rails.application.routes.draw do
 
   # 无论加 命名空间 还是 模块 helper方法不受影响
   # 加controller 层级
-  scope module: 'admin' do
-    resources :users
-  end
+  # scope module: 'admin' do
+  #   resources :users
+  # end
   # 等价  resources :users, module: 'admin'
 
   # # 加路径前缀
@@ -157,7 +160,7 @@ Rails.application.routes.draw do
 
   # # 一个路径 同时响应多种请求方式
   # match 'bark', to: 'accounts#bark', via: [:get,:post] 
-  # #match 'bark', to: 'accounts#bark', via: :all        # 所有请求类型
+  match 'bark', to: 'accounts#bark', via: :all        # 所有请求类型
 
   # # 约束动态片段 
   # get 'hhu/:id', to: "accounts#show", id: /[a-z]3/
