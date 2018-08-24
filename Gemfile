@@ -29,13 +29,14 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.1.1'
-gem 'jquery-rails', '4.3.3'
 gem 'haml', '5.0.4'
 gem 'awesome_print', '1.8.0'
 gem 'annotate', '2.7.4'        # 为model 添加字段注释
 gem 'faker', '1.8.7'
 gem 'bcrypt', '3.1.12'
 gem 'jquery-rails', '4.3.3'    # 帮我们的ajax 请求 添加 csrf token PS: 非ajax 请求无效
+gem 'prawn', '2.2.2'           # pdf
+gem 'thin'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

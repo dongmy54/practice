@@ -22,8 +22,13 @@ Rails.application.routes.draw do
   get 'set_cookie', to: 'cookies#set_cookie'
   get 'read_cookie', to: 'cookies#read_cookie'
   post 'create_author', to: 'users#create_author'
+  get 'download_pdf', to: 'users#download_pdf'
+  get 'download_file', to: 'users#download_file'
+  get 'arbitrary_stream', to: 'users#arbitrary_stream'
+  get 'first', to: 'accounts#first'
+  get 'pravite_pathh', to: 'accounts#second', as: 'redirect_filter_test'
 
-  resources :cars, :photos, :authors, :users # 写成一行
+  resources :cars, :photos, :authors, :users, :accounts # 写成一行
   # 默认情况下 这里会导入users/porfile 路径下 加to 也没用
   get :profile,to: :p,:controller => 'users' 
 
@@ -161,6 +166,7 @@ Rails.application.routes.draw do
   # # 一个路径 同时响应多种请求方式
   # match 'bark', to: 'accounts#bark', via: [:get,:post] 
   match 'bark', to: 'accounts#bark', via: :all        # 所有请求类型
+  match 'request_test/:name', to: 'books#request_test', via: :all
 
   # # 约束动态片段 
   # get 'hhu/:id', to: "accounts#show", id: /[a-z]3/
@@ -185,7 +191,7 @@ Rails.application.routes.draw do
   # get 'redirect_test', to: redirect('/accounts/2', status: 302)    # 通过 status 修改重定向状态码
   # #get 'redirect_test/:k',to: redirect {|path_params,req|      # 也可接块 但测试不接受 do..end 写法
   # #  "/accounts/#{path_params[:k]}"}
-
+  get "yuy",to: redirect('http://sub.dev:3000/users')    # 里面可以写绝对路径
   # get '你好', to: 'accounts#show'         # 路由中也可使用中文哦 6666
 
   # match '/application.js', to: MyRackApp, via: :all 接rake

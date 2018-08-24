@@ -44,6 +44,46 @@ class BooksController < ApplicationController
     end
   end
 
+  def request_test
+    return_content = {
+      :host             => request.host.to_s, # 主机名 整个域名
+      :domain_2        => request.domain(2).to_s, # 从顶级域名开始 之后两个
+      :format           => request.format.to_s,
+      :method           => request.method.to_s,
+      :post?            => request.post?.to_s,
+      :headers          => request.headers.to_s,
+      :port             => request.port.to_s,
+      :protocol         => request.protocol.to_s, # 返回协议 会加 // 如 http://
+      :remote_ip        => request.remote_ip.to_s,
+      :url              => request.url.to_s,
+      :query_parameters => request.query_parameters.to_s, # 查询字符串
+      :request_paramters => request.request_parameters.to_s, # 表单提交字符串
+      :path_parameters   => request.path_parameters.to_s  # 路由中参数
+    }
+
+    respond_to do |format|
+      format.html {render html: return_content}
+      format.json {render json: return_content.to_json}
+    end
+
+    # http://drf.al.hu.localhost:3000/request_test/hu.json?s=sdaf
+    # {
+    # "host": "drf.al.hu.localhost",
+    # "domain_2": "al.hu.localhost",
+    # "format": "application/json",
+    # "method": "GET",
+    # "post?": "false",
+    # "headers": "#<ActionDispatch::Http::Headers:0x007fe4756994c8>",
+    # "port": "3000",
+    # "protocol": "http://",
+    # "remote_ip": "127.0.0.1",
+    # "url": "http://drf.al.hu.localhost:3000/request_test/hu.json?s%20=%20%27sdaf%27",
+    # "query_parameters": "{\"s \"=>\" 'sdaf'\"}",
+    # "request_paramters": "{}",
+    # "path_parameters": "{:controller=>\"books\", :action=>\"request_test\", :name=>\"hu\", :format=>\"json\"}"
+    # }
+  end
+
   def ajax_page
   end
 

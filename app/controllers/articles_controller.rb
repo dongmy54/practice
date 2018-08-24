@@ -1,5 +1,10 @@
 class ArticlesController < ApplicationController
+  # 基本身份认证
   http_basic_authenticate_with name: 'dmy',password: 'dmy067', expect: [:index, :show]
+
+  # 强制启动ssl 
+  # 本地需要用 bundle exec thin start --ssl 才能支持
+  # force_ssl
 
   def index
     @articles = Article.all

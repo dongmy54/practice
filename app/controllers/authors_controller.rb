@@ -8,7 +8,15 @@ class AuthorsController < ApplicationController
   before_action :excute_action2
   # 后置过滤器 可以获取到 response
   after_action do |controller|        # 简单过滤器 可以写成块
+    puts "-------------response body: #{response.body}"
+    puts "-------------response status: #{response.status}"
+    puts "-------------response location: #{response.location}" # 重定向url
+    puts "-------------response content_type: #{response.content_type}" # 响应类型
+    puts "-------------response charset: #{response.charset}"
     puts "-----------response params: #{response.header}" 
+
+    # 设置响应头
+    # response.headers["Content-Type"] = "application/pdf"
   end
 
   def index

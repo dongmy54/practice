@@ -1,5 +1,9 @@
 class AccountsController < ApplicationController
+  # 异常处理
+  rescue_from ActiveRecord::RecordNotFound, with: :redirect_to_root
+
   def show
+    @account = Account.find(params[:id])
     puts "路由默认参数：#{params}" 
 
     render html: 'account show'
@@ -15,6 +19,14 @@ class AccountsController < ApplicationController
     end
   end
 
+  def first
+    redirect_to redirect_filter_test_path
+  end
+
+  def second
+    render html: 'redirect test hk'
+  end
+
   def kku
     render html: "-------request信息：#{request.subdomain}"
   end
@@ -28,5 +40,11 @@ class AccountsController < ApplicationController
   def wildcard
     render html: "-------通配符a: #{params[:a]}; 通配符b: #{params[:b]}"
   end
+
+  private
+    def redirect_to_root
+      flash[:warning] = "id: #{params[:id]}account 未能找到"
+      redirect_back(fallback_location: root_path)  #应用位置存在 则回到引用页面（http refer) 否则回退首页
+    end
 
 end
