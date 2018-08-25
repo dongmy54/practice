@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Blog</title>
+    <%= auto_discovery_link_tag(:rss, "http://www.example.com/feed.rss", { title: "RSS Feed" }) %>
     <!-- 默认情况下 页面上的表单 rails 通过 csrf_meta_tags 自动加上authenticity_token值-->
     
     <%= csrf_meta_tags %>

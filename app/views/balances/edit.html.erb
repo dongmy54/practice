@@ -1,0 +1,23 @@
+<!-- 默认情况下 将实例变量 传给模版名 -->
+<!-- locals 应该算一种通用写法 -->
+<% render partial: 'head', locals: {head: @head } %>
+<%# render partial: 'head', object: @head %>
+
+<!-- as 可接 符合/字符串-->
+<%# render partial: 'head', object: @head, as: 'k' %>
+<%# render partial: 'head', object: @head, as: :k %>
+
+<!-- 没有变量名 写起来最简单 -->
+<%= render 'shared/center' %>
+
+<!-- 缓存代码片段 -->
+<% cache do %>
+  <%= render 'end' %>
+<% end %>
+
+<!-- capture将 html 内容装到变量中 待用 -->
+<% @hu = capture do %>
+  <p>被capture 捕获的内容</p>
+<% end %>
+
+<%= @hu %>

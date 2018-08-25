@@ -1,0 +1,17 @@
+=image_tag('timg.jpg')
+%p 计算图像路径(这里还添加了指纹)
+%p=image_path('timg.jpg')
+%p 绝对路径
+%p=image_url('timg.jpg')
+%p js path
+%p=javascript_path('js1')
+%p js url
+%p=javascript_url('js2')
+%p 样式表 path
+%p=stylesheet_path 'accounts'
+%p 样式表 url
+%p=stylesheet_url 'accounts'
+
+/ benchmark 测试
+-benchmark '处理时间' do
+  =100.times {puts 'hulo'}

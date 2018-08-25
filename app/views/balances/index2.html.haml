@@ -1,0 +1,10 @@
+// 局部布局
+// 可看出小版的 layout
+//=render partial: 'index2_p', layout: 'box', locals: {balance: @balance}
+
+// render 方法可以接块 （里面为模版内容）与上等级
+
+-render(layout: 'box', locals: {balance: @balance}) do
+  %p=balance.income
+  %p=balance.expense
+

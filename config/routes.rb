@@ -27,8 +27,13 @@ Rails.application.routes.draw do
   get 'arbitrary_stream', to: 'users#arbitrary_stream'
   get 'first', to: 'accounts#first'
   get 'pravite_pathh', to: 'accounts#second', as: 'redirect_filter_test'
+  get 'index1', to: 'balances#index1'
+  get 'index2', to: 'balances#index2'
+  get 'index3', to: 'balances#index3'
+  get 'index4', to: 'balances#index4'
+  get 'index5', to: 'balances#index5'
 
-  resources :cars, :photos, :authors, :users, :accounts # 写成一行
+  resources :cars, :photos, :authors, :users, :accounts, :balances # 写成一行
   # 默认情况下 这里会导入users/porfile 路径下 加to 也没用
   get :profile,to: :p,:controller => 'users' 
 
