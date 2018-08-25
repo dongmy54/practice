@@ -31,6 +31,14 @@ class BalancesController < ApplicationController
   def index5
   end
 
+  def new
+    @balance = Balance.first
+  end
+
+  # 表单相关辅助方法
+  def form_relates
+    @balance = Balance.new
+  end
 
   # json jbuilder模版
   def show

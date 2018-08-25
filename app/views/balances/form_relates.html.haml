@@ -1,0 +1,11 @@
+.row
+  .col-md-3
+    =form_for @balance,url: {action: 'create'} do |f|
+      =f.label '收入'
+      =f.text_field :income
+      =f.label '支出'
+      =f.text_field :expense
+      =submit_tag '提交'
+  .col-md-1
+    /复选框
+    =check_box 'book','publish'

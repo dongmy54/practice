@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'index3', to: 'balances#index3'
   get 'index4', to: 'balances#index4'
   get 'index5', to: 'balances#index5'
+  get 'form',   to: 'balances#form_relates'
 
   resources :cars, :photos, :authors, :users, :accounts, :balances # 写成一行
   # 默认情况下 这里会导入users/porfile 路径下 加to 也没用

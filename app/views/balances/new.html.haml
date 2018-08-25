@@ -1,0 +1,40 @@
+.row
+  .col-md-3
+    / 时间相关
+    %p 年月日
+    =date_select 'balance', 'created_at'
+    %p 年 月 日 时 分
+    =datetime_select 'balance', 'created_at'
+    %p 时 分 秒
+    %p=time_select 'balance', 'created_at'
+    %p 时间间隔 描述 include_seconds ture 精确的
+    %p=distance_of_time_in_words Time.now, Time.now + 15.seconds
+    %p=distance_of_time_in_words Time.now, Time.now + 15.seconds, include_seconds: true
+    %p 年月 日(没有写字段)
+    %p=select_date Time.now + 3.days
+    %p=select_date
+    %p 年 月 日 时 分(没有写字段)
+    %p=select_datetime(Time.now + 4.days)
+    %p=select_datetime
+    %p 天
+    %p=select_day Time.now + 2.days
+    %p=select_day 3
+    %p 小时
+    %p=select_hour Time.now + 1.hours
+    %p 分钟
+    %p=select_minute Time.now - 20.minutes
+    %p 秒
+    %p=select_second Time.now + 16.seconds
+    %p 月份
+    %p=select_month Date.today
+    %p 年
+    %p=select_year Date.today
+    %p=select_year Date.today, start_year: 1900, end_year: 1908
+    %p 到当前时间间隔
+    %p=time_ago_in_words 5.minutes.from_now
+  .col-md-9
+    / debug 方法
+    =debug(@balance)
+
+
+
