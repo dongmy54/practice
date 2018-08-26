@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   get 'form',   to: 'balances#form_relates'
   get 'form2',  to: 'balances#form_tag'
   get 'local_page_t', to: 'balances#local_page_t'
+  get 'render_d', to: 'cars#d_index'
+  get 'head', to: 'cars#head_test'
 
   resources :cars, :photos, :authors, :users, :accounts, :balances # 写成一行
   # 默认情况下 这里会导入users/porfile 路径下 加to 也没用
@@ -70,6 +72,7 @@ Rails.application.routes.draw do
   # # ps： 注意 资源的嵌套和 controller嵌套无关
   # # /authors/:author_id/books/:book_id/edit 本质上是url的叠加
   # 嵌套层级不超过1层
+  get 'search1', to: 'authors#search', as: 'search_author' 
   resources :authors do
     resources :books
   end

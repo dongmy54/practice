@@ -8,9 +8,9 @@
     <title>Blog</title>
     <%= auto_discovery_link_tag(:rss, "http://www.example.com/feed.rss", { title: "RSS Feed" }) %>
     <!-- 默认情况下 页面上的表单 rails 通过 csrf_meta_tags 自动加上authenticity_token值-->
-    
     <%= csrf_meta_tags %>
 
+    <!-- application 默认会加载 所有样式表 js 同理-->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -48,7 +48,7 @@
         <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
       </div>
 
-      <%= yield %>
+      <%= content_for?(:private_content) ? yield(:private_content) : yield %>
 
       <footer class="footer">
         <p>&copy; Company 2017</p>

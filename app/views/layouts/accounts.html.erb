@@ -1,0 +1,11 @@
+<h3> 我是 accounts 控制器的私有布局 </h3>
+
+<% content_for :private_content do %>
+  <p>私密内容</p>
+
+  <!-- 利用 content_for? 判断是否 有内容传入-->
+  <%=content_for?(:new_content) ? yield(:new_content) : yield %>
+<% end %>
+<!-- 嵌套布局 -->
+<!-- PS： 注意这里用 template -->
+<%=render template: 'layouts/application' %>

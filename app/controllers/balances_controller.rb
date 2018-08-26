@@ -1,4 +1,10 @@
 class BalancesController < ApplicationController
+  layout 'accounts', except: :index
+
+  # 动态指定布局
+  # layout :dynamically_specify_layout
+
+  #layout lambda {|controller| controller.request.xhr? ? 'accounts' : 'application'}
 
   before_action :special_person_special_page, only: :local_page_t
   # xml builder模版测试
@@ -61,9 +67,12 @@ class BalancesController < ApplicationController
 
   private
     def special_person_special_page
-       I18n.locale = :expert if current_user.expert?
       # 本地话视图 模版名 + .special 需要配置可用 本地
-      I18n.locale = :special if params[:special] == 'dmy'
+      # I18n.locale = :special if params[:special] == 'dmy'
+    end
+
+    def dynamically_specify_layout
+      'accounts' if params[:layout] == 'accounts'
     end
 
 end

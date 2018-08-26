@@ -1,6 +1,9 @@
 class AccountsController < ApplicationController
   # 异常处理
   rescue_from ActiveRecord::RecordNotFound, with: :redirect_to_root
+  
+  def index
+  end
 
   def show
     @account = Account.find(params[:id])
@@ -44,6 +47,7 @@ class AccountsController < ApplicationController
   private
     def redirect_to_root
       flash[:warning] = "id: #{params[:id]}account 未能找到"
+      # 重导会之前页面
       redirect_back(fallback_location: root_path)  #应用位置存在 则回到引用页面（http refer) 否则回退首页
     end
 

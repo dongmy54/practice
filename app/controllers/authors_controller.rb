@@ -31,6 +31,11 @@ class AuthorsController < ApplicationController
     render html: 'new'
   end
 
+  def search
+    puts "04556sdafdfasdf"
+    redirect_to authors_path
+  end
+
   private
 
     def excute_action1

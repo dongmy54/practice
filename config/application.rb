@@ -17,7 +17,8 @@ module Blog
     # 净化保留 标签
     config.action_view.sanitized_allowed_tags = 'table', 'tr', 'td', 'button'
     # 设置可用的本地 
-    config.i18n.available_locales = :special
+    #config.i18n.available_locales = :special
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

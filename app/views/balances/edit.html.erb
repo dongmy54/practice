@@ -10,6 +10,15 @@
 <!-- 没有变量名 写起来最简单 -->
 <%= render 'shared/center' %>
 
+<!-- 局部视图 中也可用布局 -->
+<%= render partial: 'pp', layout: 'layout_p' %>
+
+<!-- 局部视图 变量传递 local_assigns  PS: 这个时候不能带 partial-->
+<%= render 'assign', dmy: 'kkok' %>
+
+<!--  一次性 render 多个模版 PS: 默认到 对应文件下找 users cars-->
+<%= render [User.first,Car.first] %>
+
 <!-- 缓存代码片段 -->
 <% cache do %>
   <%= render 'end' %>

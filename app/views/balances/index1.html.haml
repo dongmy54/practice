@@ -2,10 +2,13 @@
   .col-md-2
   .col-md-4
     .ol.list-group
-      // 渲染集合 会根据你 的集合model 名 去找对应的 partial
+      // 渲染集合 会根据你 的集合model 名 去找对应的 partial 
+      / 直接用实例变量 这种方式 除了集合可以这样用 单个实例变量 @balance 也可
       //=render @balances
       // 关键字 collection
       //=render partial: 'balance',collection: @balances
 
       // 间隔模版
       =render partial: @balances, spacer_template: 'balance_interval'
+      / 集合为空 可以这样用
+      /=render @balances || "There are no balances avaliable"
