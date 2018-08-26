@@ -1,5 +1,5 @@
 .row
-  .col-md-3
+  .col-md-2
     / 时间相关
     %p 年月日
     =date_select 'balance', 'created_at'
@@ -32,9 +32,47 @@
     %p=select_year Date.today, start_year: 1900, end_year: 1908
     %p 到当前时间间隔
     %p=time_ago_in_words 5.minutes.from_now
-  .col-md-9
+    %p 日期输入框 相对来说漂亮点
+    =date_field 'user', 'dob'
+  .col-md-6
     / debug 方法
     =debug(@balance)
-
-
-
+  .col-md-2
+    %p 上传文件
+    =file_field 'user','attachment'
+    %p 隐藏标签
+    =hidden_field 'user', 'token'
+    %p label 标签
+    =label :user, :title
+    %p 密码框标签(字符串 符号 都行)
+    =password_field 'user', 'password'
+    %p 文本区域框(模型 字段 中间必须为乘号)
+    =text_area :article, :body, size: "20x30"
+    %p 文本框 标签
+    =text_field :article, 'title'
+    %p email 框
+    =email_field 'user', 'email'
+    %p url 框
+    =url_field 'user', 'url'
+    %p 集合 选项 会后两个为 在集合上调用的方法 值方法 文本方法
+    =collection_select 'book','author',Author.all,:id,:name , prompt: true # prompt 提示
+    %p 集合单选
+    =collection_radio_buttons 'book','author',Author.all,:id,:name
+    %p 集合复选
+    =collection_check_boxes 'book','author',Author.all,:id,:name
+    %p 分组选项
+    %select
+      / 集合 分组方式 组名称 选项值 选项文本 需放 select 标签
+      =option_groups_from_collection_for_select Author.all, :books, :name, :id, :published_at
+    %p 选项标签
+    %select
+      =options_for_select %w(张三 王五 李四)
+    %p 集合选项标签简化板
+    =options_from_collection_for_select Author.all, :id, :name
+    %p 选择列表
+    =select 'book','author_id', Author.all.collect {|a| [a.name,a.id]}
+    %p 时区标签 无 select
+    %select
+      =time_zone_options_for_select
+    %p 时区标签 有 select
+    =time_zone_select 'user', 'time_zone'

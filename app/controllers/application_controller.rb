@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # 前置过滤器
   before_action :redirect_admin_user_if_param_include_p
 
+
   private
 
     def redirect_admin_user_if_param_include_p

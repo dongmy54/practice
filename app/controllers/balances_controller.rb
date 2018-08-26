@@ -1,5 +1,6 @@
 class BalancesController < ApplicationController
 
+  before_action :special_person_special_page, only: :local_page_t
   # xml builder模版测试
   def index
     @balance  = Balance.first
@@ -38,6 +39,12 @@ class BalancesController < ApplicationController
   # 表单相关辅助方法
   def form_relates
     @balance = Balance.new
+    @author  = Author.new
+  end
+
+  # 第二部分 辅助方法
+  def form_tag
+    
   end
 
   # json jbuilder模版
@@ -49,5 +56,14 @@ class BalancesController < ApplicationController
     @head = 'this is head'
   end
 
+  def local_page_t
+  end
+
+  private
+    def special_person_special_page
+       I18n.locale = :expert if current_user.expert?
+      # 本地话视图 模版名 + .special 需要配置可用 本地
+      I18n.locale = :special if params[:special] == 'dmy'
+    end
 
 end

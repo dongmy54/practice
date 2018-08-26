@@ -1,0 +1,100 @@
+.row
+  .col-md-3
+    %p 复选
+    =check_box_tag 'accept'
+    %br
+    %p fieldset 标签
+    =field_set_tag do
+      %p=text_field_tag 'name'
+    %p 文件上传
+    =file_field_tag 'attachment'
+    %p form_tag 表单
+    / form_tag 第一个参数 时url
+    =form_tag '/authors', multipart: true do
+      =label_tag :file, '请上传'
+      =file_field_tag 'file'
+      =submit_tag '确认'
+    %p 隐藏字段
+    =hidden_field_tag 'token', 'xxxyyyyzzz'
+    %p label
+
+    / 只有一个参数 时 for 和 文本同
+    =label_tag 'name'
+    %p 密码
+    =password_field_tag 'password'
+  .col-md-3
+    =label :gender, '性别'
+    =radio_button_tag 'gender', 'male'
+    %br
+    =label :people,'选择人' 
+    / 搭配 options_for_select 一起使用
+    =select_tag "author_id", options_for_select(Author.all.collect{ |a| [a.name,a.id]})
+    %br
+    =label :body, '文本区域'
+    =text_area_tag ''
+    %br
+    =label :name_k,'名称'
+    =text_field_tag :name_k
+    %br
+    =label :email,'邮箱'
+    =email_field_tag 'email'
+    %br
+    =label :url, 'url'
+    =url_field_tag :url
+    %br
+    =label :dob, '日期'
+    =date_field_tag 'dob'
+    %br
+    /js 标签
+    =javascript_tag "alert('你真棒！')"
+    / 转义(单引号/回车/双引号）js 让js 等正常执行
+    =escape_javascript '<a href="http://somehost/resources/123456">Hello World!</a>'
+    %br
+    %p ----------------- 数字相关-------------
+    %p 数字转换成货币
+    =number_to_currency 12346.56
+    %p 文件大小
+    =number_to_human_size 1234
+    %br
+    =number_to_human_size 12234567
+    %br
+    %p 数字百分比
+    =number_to_percentage 85,precision: 2
+    %br
+    %p 电话号码
+    =number_to_phone 18200375876
+    %br
+    %p 数字千分隔字符
+    =number_with_delimiter 12345678
+    %br
+    %p 数字转换为指定精度数字
+    =number_with_precision 123.3685, precision: 2
+  .col-md-3
+    %p ---------------- 净化相关 ----------------
+    -str = capture do
+      <form>
+      <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    =str
+    %p 进化测试(只剩small 和 div)
+    =sanitize str
+    %p 指定属性标签 和 属性 才不会被清除
+    =sanitize str, tags: %w(input label form), attributes: %w(class)
+    %p 净化css
+    =sanitize_css('hda h1 {background-color: #00ff00}')
+    %p 净化链接 (只保留文本)
+    =strip_links('<a href="http://rubyonrails.org">Ruby on Rails</a>')
+    %p 净化注释在内所有 html 标签
+    =strip_tags("<b>Bold</b> no more!  <a href='more.html'>See more</a>")
+
+
+

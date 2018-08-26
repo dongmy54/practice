@@ -3,9 +3,33 @@
     =form_for @balance,url: {action: 'create'} do |f|
       =f.label '收入'
       =f.text_field :income
+      %br
       =f.label '支出'
       =f.text_field :expense
+      %br
       =submit_tag '提交'
   .col-md-1
     /复选框
+    =label 'book', 'publish:'
     =check_box 'book','publish'
+    %br
+    =label 'author', 'name:'
+    / 最后一个 参数 为值
+    =radio_button 'author', 'name', 'dmy'
+    =radio_button 'author', 'name', 'dmc'
+
+.row
+  .col-md-4
+    %h4 同时提交关联模型数据
+    =form_for @author do |author_form|
+      =author_form.label '作者名字:'
+      =author_form.text_field :name
+      %br
+      /下一层级 开始 用实例变量 这里要去构建 关联的另外一个对象
+      =fields_for @author.books.build do |book_form|
+        =book_form.label '书发表时间'
+        =book_form.date_select :published_at
+        %br
+        =book_form.label '是否激活'
+        =book_form.check_box :active
+      =submit_tag '提交'

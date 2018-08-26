@@ -14,6 +14,10 @@ module Blog
     #config.active_record.error_on_ignored_order = true    # 排序错误是否忽略
     # ActiveRecord::Base.lock_optimistically = false # 不只是把异常关掉，还会让后者可以更新记录
 
+    # 净化保留 标签
+    config.action_view.sanitized_allowed_tags = 'table', 'tr', 'td', 'button'
+    # 设置可用的本地 
+    config.i18n.available_locales = :special
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
