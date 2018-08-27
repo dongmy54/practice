@@ -1,3 +1,20 @@
-/ 搜索表单 共用 
+/ 搜索表单 共用
+%h4 搜索表单
 =render 'shared/search',url: search_author_path do
   =text_field_tag :name
+
+%h4 作者表单
+=form_for @author do |f|
+  =f.label :name, '作者姓名'
+  =f.text_field :name
+  %br
+  =f.fields_for :books do |book_form|
+    =book_form.label :_destroy, '删除'
+    =book_form.check_box :_destroy
+    %br
+    =book_form.label :published_at, '图书'
+    =book_form.date_select :published_at
+    %br
+  %br
+  =submit_tag '提交'
+

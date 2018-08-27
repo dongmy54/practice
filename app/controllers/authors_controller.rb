@@ -25,10 +25,33 @@ class AuthorsController < ApplicationController
 
   def show
     puts '---------拉入中'
+    @author = Author.find(params[:id])
   end
 
   def new
-    render html: 'new'
+    @author = Author.new
+    2.times {@author.books.build}  # 创建几个子book 页面动态显示几个
+  end
+
+  def create
+    @author = Author.new(author_params)
+    if @author.save
+      flash[:success] = '创建成功'
+      redirect_to author_path(@author)
+      # 发现在 create/update 后 没有模版 并不报错
+    else
+      render :new
+    end
+  end
+
+  def update
+    @author = Author.find(params[:id])
+    if @author.update(author_params)
+      flash[:success] = '更新成功'
+      redirect_to author_path(@author)
+    else
+      render :show
+    end
   end
 
   def search
@@ -60,6 +83,11 @@ class AuthorsController < ApplicationController
       end
     end
 
+    def author_params
+      # 注意这里 book_attributes 是 数组
+      # 注意 这里要允许传 id 不然 更新时 会重复创建book 
+      params.require(:author).permit(:name,books_attributes: [:published_at,:_destroy,:id])
+    end
     
 
 end

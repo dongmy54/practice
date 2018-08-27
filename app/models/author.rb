@@ -27,7 +27,11 @@ class Author < ApplicationRecord
  # restrict_with_exception 炮异常
  # restrict_with_error 返回false
 
-  accepts_nested_attributes_for :books, allow_destroy: true
+  accepts_nested_attributes_for :books, allow_destroy: true#, reject_if: lambda {|attributes| 
+    #attributes['name'].blank? }
+    # reject_if 防止创建空记录
+    # reject_if: :all_blank 所有空字段都会拒绝（除_destroy)
+
   # 这个方法主要用于 应用来一次性 从父对象 保存多个子对象的
   # h = {:name => '测地', books_attributes: [
   #        {published_at: Time.now},
