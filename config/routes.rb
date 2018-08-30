@@ -17,8 +17,6 @@ Rails.application.routes.draw do
   #resources :users
   resources :orders
   # 控制器 和 方法间用
-  get 'products', to: 'products#index'
-  get 'products/:id', to: 'products#show', as: 'single_product'
   get 'set_cookie', to: 'cookies#set_cookie'
   get 'read_cookie', to: 'cookies#read_cookie'
   post 'create_author', to: 'users#create_author'
@@ -77,6 +75,12 @@ Rails.application.routes.draw do
     resources :books
   end
 
+  resources :products do
+    collection do
+      post :upload
+    end
+  end
+  get 'products/:id', to: 'products#show', as: 'single_product'
   #get 'huds(/:id)', to: 'books#show'   # 这里即可以 接收 /huds  也可以 /huds/25
   # namespace :api do
   #   post 'hu', to: 'users#hu' # 这样写是可以的 会加上 前api
