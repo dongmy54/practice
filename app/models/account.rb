@@ -11,9 +11,12 @@
 #  category_id :integer
 #  surname     :string
 #  uuid        :string
+#  avatar      :string
 #
 
 class Account < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
+  
   scope :age_old, -> {where('age > ?', 30)}                          # 等同于定义类方法
   scope :age_greater_than, ->(age){ where('age > ?', age)}           # 也可传参数
   scope :name_include_dm, -> {where('name ~ ?','.*dm.*')}

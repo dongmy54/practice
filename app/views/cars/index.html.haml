@@ -1,1 +1,78 @@
 %h3 cars index页
+
+=form_tag do 
+  from_contents
+
+%br
+/ 搜索表单
+=form_tag "/search", method: "get" do
+  =label_tag :q, "搜索:"
+  =text_field_tag :q
+  =submit_tag "开始"
+
+%br 
+/ 表单散列参数
+/ Ps 1 加上括号 2 加上 {} 让第二个hash 不进url中  
+=form_tag({controller: "cars", action: "search"}, method: "get", :class => "nifty_form") do
+  散列参数表单
+
+%br
+/ 复选框 默认值是1 可通过第二个参数 设定默认值
+=check_box_tag :pet_dog, 2
+=label_tag :pet_dog, "I own a dog"
+=check_box_tag :pet_cat
+=label_tag :pet_cat, "I own a cat"
+
+%br
+/ 单选按钮 它id 会由 字段 和 第二个值 组合而成
+=radio_button_tag :age, "child"
+=label_tag :age_child, "I am younger than 21"
+=radio_button_tag :age, "adult"
+=label_tag :age_adult, "I'm over 21"
+
+/ 其它字段
+= text_area_tag(:message, "Hi, nice site", size: "24x6")
+= password_field_tag(:password)
+= hidden_field_tag(:parent_id, "5")
+= search_field(:user, :name)
+= telephone_field(:user, :phone)
+= date_field(:user, :born_on)
+= datetime_local_field(:user, :graduation_day)
+= month_field(:user, :birthday_month)
+= week_field(:user, :birthday_week)
+= url_field(:user, :homepage)
+= email_field(:user, :address)
+= color_field(:user, :favorite_color)
+= time_field(:task, :started_at)
+= number_field(:product, :price, in: 1.0..20.0, step: 0.5)
+= range_field(:product, :discount, in: 1..100)
+
+
+%br
+%p 模型对象表单
+/ 第一个变量是 实例变量 第二个是字段 
+/ Ps: 这个实例变量 是模型的名称 不要用实际的 模型实例
+=text_field :person, :name
+
+%br
+/ namespace 生成唯一id
+=form_for @car, url: {action: "create"}, html: {:class => "notify_form"}, namespace: "hu" do |f|
+  =f.label :type
+  =f.text_field :type
+  %br
+  =f.label :color
+  =f.text_field :color
+  %br
+  =f.label :price
+  =f.number_field :price
+  =f.submit '提交', class: "btn btn-info"
+
+/ 表单提交 命名空间 写法
+/ =form_for [:admin, @car]
+
+%br
+%p 处理patch put delete 方法
+/ _method 生成下划线 的字段
+=form_tag 'cars', method: 'patch'
+
+

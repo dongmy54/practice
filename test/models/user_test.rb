@@ -16,6 +16,7 @@
 #  length_of_service :integer
 #  guid              :string
 #  password_digest   :string
+#  avatar            :string
 #
 
 require 'test_helper'

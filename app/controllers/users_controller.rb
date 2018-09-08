@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   include ActionController::Live
 
   def index
+    @user = User.first
+    #@user = User.find(6)
   end
 
   def profile
@@ -30,6 +32,14 @@ class UsersController < ApplicationController
       flash[:success] = "作者: #{author.name}创建成功"
       redirect_to users_path
     end
+  end
+
+  def update
+    user = User.find(params[:id])
+    user.avatar = params[:user][:avatar]
+    user.save
+    flash[:success] = '文件上传成功'
+    redirect_to users_path
   end
 
   def download_pdf

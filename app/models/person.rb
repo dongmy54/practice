@@ -11,6 +11,7 @@
 #
 
 class Person < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
   # 当@person.articles << article时 自动创建readings数据
   has_many :readings
   has_many :articles, -> { distinct },through: :readings # 这种也放中间

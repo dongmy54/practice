@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get 'local_page_t', to: 'balances#local_page_t'
   get 'render_d', to: 'cars#d_index'
   get 'head', to: 'cars#head_test'
+  get 'cars/search', to: 'cars#search'
 
   resources :cars, :photos, :authors, :users, :accounts, :balances # 写成一行
   # 默认情况下 这里会导入users/porfile 路径下 加to 也没用

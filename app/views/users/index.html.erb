@@ -12,3 +12,15 @@
 <%# 前导测试 %>
 <%- puts ' kk    dsd     ' -%>
 s<%= "    dsf        dsfa    \r\n" %>d
+
+
+
+<%= form_for @user, html: { multipart: true } do |f| %>
+  <p>
+    <label>My Avatar</label>
+    <%= image_tag(@user.avatar_url) if @user.avatar? %>
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
+    <%= f.submit '上传' %>
+  </p>
+<% end %>

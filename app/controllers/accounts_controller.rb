@@ -3,6 +3,7 @@ class AccountsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :redirect_to_root
   
   def index
+    @account = Account.first
   end
 
   def show
@@ -10,6 +11,14 @@ class AccountsController < ApplicationController
     puts "路由默认参数：#{params}" 
 
     render html: 'account show'
+  end
+
+  def update
+    @account = Account.find(params[:id])
+    @account.avatar = params[:account][:avatar]
+    @account.save
+    flash[:success] = '上传成功'
+    redirect_to accounts_path
   end
 
   def bark

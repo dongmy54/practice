@@ -11,6 +11,7 @@
 #  category_id :integer
 #  surname     :string
 #  uuid        :string
+#  avatar      :string
 #
 
 require 'test_helper'

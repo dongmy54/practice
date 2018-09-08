@@ -1,1 +1,9 @@
 <p>accounts page 我为布局测试而生</p>
+
+<!-- 上传图片 -->
+<%= form_for @account, mutipart: true do |f| %>
+  <%= image_tag(@account.avatar_url) if @account.avatar? %>
+  <%= f.label :avatar,'上传文件' %>
+  <%= f.file_field :avatar %>
+  <%= f.submit '提交' %>
+<% end %>

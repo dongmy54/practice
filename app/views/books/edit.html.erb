@@ -1,0 +1,6 @@
+<%= form_for [Author.first,@book], mutilpart: true do |f| %>
+  <%= image_tag(@book.cover.thumb.url) if @book.cover? %>
+  <%= f.label :cover,'上传封面' %>
+  <%= f.file_field :cover %>
+  <%= f.submit '提交' %>
+<% end %>

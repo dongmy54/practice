@@ -23,7 +23,17 @@ class BooksController < ApplicationController
   end
 
   def edit
-    render html: '<h4>编辑页面</h4>'
+    @book = Book.first
+    #render html: '<h4>编辑页面</h4>'
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    @book.cover = params[:book][:cover]
+    @book.save
+
+    flash[:success] = '封面上传成功'
+    redirect_to edit_author_book_path(Author.first,@book)
   end
 
   def routes_set_params

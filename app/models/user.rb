@@ -16,9 +16,11 @@
 #  length_of_service :integer
 #  guid              :string
 #  password_digest   :string
+#  avatar            :string
 #
 
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
   has_secure_password
   # 自动获得 password password_confirmation 两个虚拟字段
   # 当password_confirmation 为nil,不验证 password 和 password_confirmation 的一致性

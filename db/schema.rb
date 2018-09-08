@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180805075027) do
+ActiveRecord::Schema.define(version: 20180908011500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20180805075027) do
     t.integer "category_id"
     t.string "surname"
     t.string "uuid"
+    t.string "avatar"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 20180805075027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
+    t.string "cover"
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -329,6 +331,7 @@ ActiveRecord::Schema.define(version: 20180805075027) do
     t.integer "length_of_service"
     t.string "guid"
     t.string "password_digest"
+    t.string "avatar"
   end
 
   create_table "vehicles", force: :cascade do |t|

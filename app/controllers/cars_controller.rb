@@ -4,12 +4,12 @@ class CarsController < ApplicationController
     # render_to_string 将 渲染以 字符串形式返回
     # str = render_to_string :index
     # puts str
-
+    @car = Car.new
     # 渲染原始内容 一般很少用这个
     # render body: 'raw'
 
     # 不加 html_safe html不能正常表达
-    render html: '<h4>渲染html</h4>'.html_safe, layout: true  # 布局打开
+    #render html: '<h4>渲染html</h4>'.html_safe, layout: true  # 布局打开
   end
 
   def d_index
@@ -55,6 +55,9 @@ class CarsController < ApplicationController
 
     # 默认302 
     redirect_to cars_path, status: 301 # 301 永久
+  end
+
+  def search
   end
 
   # 返回首部测试

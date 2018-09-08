@@ -8,9 +8,12 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  active       :boolean          default(TRUE)
+#  cover        :string
 #
 
 class Book < ApplicationRecord
+  mount_uploader :cover, AvatarUploader
+
   # inverse_of 接本 model 在模型中充当 单/复数
   belongs_to :author,:inverse_of => :books
 

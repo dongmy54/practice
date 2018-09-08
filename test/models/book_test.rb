@@ -8,6 +8,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  active       :boolean          default(TRUE)
+#  cover        :string
 #
 
 require 'test_helper'
