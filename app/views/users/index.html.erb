@@ -18,6 +18,8 @@ s<%= "    dsf        dsfa    \r\n" %>d
 <%= form_for @user, html: { multipart: true } do |f| %>
   <p>
     <label>My Avatar</label>
+    <!-- 使用默认图片 -->
+    <%#= image_tag(@user.avatar.default_url) if @user.avatar? %>
     <%= image_tag(@user.avatar_url) if @user.avatar? %>
     <%= f.file_field :avatar %>
     <%= f.hidden_field :avatar_cache %>
