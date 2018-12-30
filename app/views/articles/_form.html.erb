@@ -1,6 +1,7 @@
 <% if @article.errors.any? %>
   <h3>
     <%= pluralize(@article.errors.count, '错误') %>
+    <%= @article.errors.messages %>
   </h3>
 
   <ul>
@@ -11,6 +12,12 @@
 <% end %>
 
 <%= form_for @article do |f| %>
+
+  <p>
+    <%= f.label :category_id, '文章分类' %>
+    <%= f.select :category_id, Category.all.map {|i| [i.name, i.id]} %>
+  </p>
+
   <p>
     <%= f.label :tite %>
     <%= f.text_field :title %>
