@@ -33,3 +33,5 @@ User.all.each do |u|
   puts '成功修复一条'
 end
 
+User.create!(name: 'dmy', email: '123@qq.com', alisa_name: 'sddf', terms_of_service: true, role: 'admin', age: 25, password: '123456', password_confirmation: '123456', email_confirmation: '123@qq.com', home_page_urls: '/')
+Product.create!(user_id: 1, name: '苹果', price: 15.6)
