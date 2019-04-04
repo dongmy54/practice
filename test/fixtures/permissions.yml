@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: permissions
+#
+#  id             :bigint(8)        not null, primary key
+#  action         :string
+#  name           :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  ancestry       :string
+#  ancestry_depth :integer          default(0)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value
